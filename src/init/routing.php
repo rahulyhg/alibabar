@@ -35,4 +35,7 @@ $app->get('/api/init', function() use($app){
     return $app->json($data);
 })->bind('api-init');
 
+if (php_sapi_name() == 'cli'){
+    return $app;
+}
 echo $app->run();
