@@ -1,0 +1,51 @@
+{% extends "app/view/base.twig" %}
+
+{% set page_id = 'index' %}
+
+{% block head %}
+    {{ parent() }}
+    <title>AliBaBar</title>
+    <meta name="robots" content="none" />
+    <meta name="googlebot" content="none" />
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+    <script type="text/javascript">
+        var xhr = new XMLHttpRequest();
+        var params = ''
+        xhr.open("get", '{{ path('api-init') }}', true);
+
+        //Send the proper header information along with the request
+        //xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = function() {//Call a function when the state changes.
+            if(xhr.readyState == 4 && xhr.status == 200) {
+                var data = JSON.parse(this.responseText);
+                document.getElementById("menu-json").innerHTML = JSON.stringify(data['menu'], false, 2);
+                document.getElementById("drunk-json").innerHTML = JSON.stringify(data['drunk'], false, 2);
+                document.getElementById("my-messages").innerHTML = JSON.stringify(data['my-messages'], false, 2);
+                document.getElementById("last-json").innerHTML = JSON.stringify(data['last'], false, 2);
+                document.getElementById("top-drinkers-json").innerHTML = JSON.stringify(data['top-drinkers'], false, 2);
+                document.getElementById("top-drinks").innerHTML = JSON.stringify(data['top-drinks'], false, 2);
+            }
+        }
+        xhr.send(params);
+    </script>
+{% endblock %}
+
+{% block content %}
+    <h2>Bartender ({{ bartender }}):</h2>
+    <p>Hello kind customer, how can i help you today?</p>
+    <div class="row">
+        <div class="box"><h3>menu:</h3><pre id="menu-json"></pre></div>
+        <div class="box"><h3>items drunk:</h3><pre id="drunk-json"></pre></div>
+        <div class="box"><h3>my messages:</h3><pre id="my-messages"></pre></div>
+    </div>
+    <div style="clear:both"></div>
+    <div class="row">
+        <div class="box"><h3>last $n orders:</h3><pre id="last-json"></pre></div>
+        <div class="box"><h3>top drinks:</h3><pre id="top-drinks"></pre></div>
+        <div class="box"><h3>top drinkers</h3><pre id="top-drinkers-json"></pre></div>
+    </div>
+{% endblock %}

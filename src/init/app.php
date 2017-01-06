@@ -1,7 +1,4 @@
 <?php
-echo 'hello world';
-exit();
-
 $app = new Silex\Application();
 $app['debug'] = false;
 
@@ -17,6 +14,13 @@ $app->before(function () use ($app){
         session_set_save_handler($app['SessionHandler']);
         session_start();
         $started = true;
+
+        if (!isset($_SESSION['drinks'])){
+            $_SESSION['drinks'] = [];
+        }
+        if (!isset($_SESSION['messages'])){
+            $_SESSION['messages'] = [];
+        }
     }
 
     //ensures app doesn't short circuits into loops because of PDO not being available

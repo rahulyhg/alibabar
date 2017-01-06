@@ -1,4 +1,8 @@
 <?php
-$config = [
-    'mysql' => $_SERVER['mysql_main']
-];
+$config = new \app\misc\Config();
+$config->mysql_dsn = isset($_SERVER['MYSQL_MASTER_DSN']) ?
+    $_SERVER['MYSQL_MASTER_DSN'] : 'mysql:host=127.0.0.1;port=3306;dbname=alibabar';
+$config->mysql_user = isset($_SERVER['MYSQL_USER']) ? $_SERVER['MYSQL_USER'] : 'root';
+$config->mysql_password = isset($_SERVER['MYSQL_PASSWORD']) ? $_SERVER['MYSQL_PASSWORD'] : 'root';
+$config->redis_session = isset($_SERVER['REDIS_SESSION_HOST']) ?
+    [$_SERVER['REDIS_SESSION_HOST'], $_SERVER['REDIS_SESSION_PORT']] : ['127.0.0.1', '6379'];
