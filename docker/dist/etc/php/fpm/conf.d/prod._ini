@@ -1,4 +1,6 @@
 zend_extension=opcache.so
+extension=redis.so
+extension=pdo_mysql.so
 
 error_reporting=-1
 display_startup_errors=0

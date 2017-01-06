@@ -3,7 +3,8 @@ FROM php:7.0.8-fpm-alpine
 RUN \
     echo "@comm http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
     && apk upgrade --update \
-    && apk add bash tar sed nginx runit@comm
+    && apk add bash tar sed nginx runit@comm \
+    && docker-php-ext-enable redis pdo pdo_mysql json session 2>&1 > /dev/null || true
 
 WORKDIR /opt
 
