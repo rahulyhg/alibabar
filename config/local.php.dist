@@ -1,0 +1,4 @@
+<?php
+$config = [
+    'mysql' => $_SERVER['mysql_main']
+];

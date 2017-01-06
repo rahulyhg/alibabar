@@ -1,0 +1,13 @@
+.idea
+.vagrant
+.DS_Store
+designs
+/config/local.php
+/config/test.php
+/vendor/*
+/build
+node_modules
+assets/components
+*.iml
+project.tgz
+/tmp

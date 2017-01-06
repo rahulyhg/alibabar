@@ -1,0 +1,33 @@
+{
+    "name": "alibabar",
+    "type": "project",
+    "authors": [],
+
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    },
+    
+    "autoload-dev": {
+        "psr-4": {
+            "tests\\": "tests/"
+        }
+    },
+
+    "require": {
+        "php": ">=7.0",
+        "silex/silex": "v1.2.2",
+        "twig/twig": "v1.15.1",
+        "symfony/twig-bridge": "v2.4.3",
+        "symfony/form": "~2.3",
+        "symfony/security-csrf": "~2.4",
+        "symfony/validator": "~2.3",
+        "symfony/translation": "~2.3",
+        "robmorgan/phinx": "v0.6.5"
+    },
+
+    "require-dev": {
+        "phpunit/phpunit": "5.5.*"
+    }
+}
